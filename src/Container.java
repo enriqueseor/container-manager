@@ -1,14 +1,14 @@
-public abstract class Contenedor {
+public abstract class Container {
     private String numserie, capacidad, estado;
-    private final Mercancia[] ME = new Mercancia[100];
+    private final Merchandise[] ME = new Merchandise[100];
 
-    public Contenedor(String numserie, String capacidad, String estado) {
+    public Container(String numserie, String capacidad, String estado) {
         this.numserie = numserie;
         this.capacidad = capacidad;
         this.estado = estado;
     }
 
-    public void addMercancia(int i, Mercancia[] ME) {
+    public void addMercancia(int i, Merchandise[] ME) {
         for (int j = 0; j < i; j++) {
             this.ME[j]=ME[j];
         }

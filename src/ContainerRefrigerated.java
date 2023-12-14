@@ -1,7 +1,7 @@
-public class ContenedorRefrigerado extends Contenedor {
+public class ContainerRefrigerated extends Container {
     private final String temperatura;
 
-    public ContenedorRefrigerado(String numero, String capacidad, String estado, String temperatura) {
+    public ContainerRefrigerated(String numero, String capacidad, String estado, String temperatura) {
         super(numero, capacidad, estado);
         this.temperatura= temperatura;
     }

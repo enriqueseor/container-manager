@@ -1,10 +1,10 @@
 import javax.swing.JOptionPane;
 
-public class TestContenedores {
+public class ContainerManager {
 
     public static void main(String[] args) {
-        Contenedor[] CO = new Contenedor[100];
-        Mercancia[] ME = new Mercancia[100];
+        Container[] CO = new Container[100];
+        Merchandise[] ME = new Merchandise[100];
         int j = 0;
 
         int x = AskQuestion();
@@ -39,7 +39,7 @@ public class TestContenedores {
         );
     }
 
-    private static void CreateContenedor(Contenedor[] CO, int j, Mercancia[] ME){
+    private static void CreateContenedor(Container[] CO, int j, Merchandise[] ME){
         String numserie = JOptionPane.showInputDialog("Numero de serie: ");
         String capacidad = JOptionPane.showInputDialog("Capacidad: ");
         int i = CreateMercancia(ME, numserie);
@@ -72,18 +72,18 @@ public class TestContenedores {
         );
         switch (tipo) {
             case 0 -> { String color = JOptionPane.showInputDialog("¿Cual es el color");
-                        CO[j] = new ContenedorSeco(numserie, capacidad, estado, color);
+                        CO[j] = new ContainerDry(numserie, capacidad, estado, color);
                         CO[j].addMercancia(i, ME);}
             case 1 -> { String temperatura = JOptionPane.showInputDialog("¿Cual es la temperatura?");
-                        CO[j] = new ContenedorRefrigerado(numserie, capacidad, estado, temperatura);
+                        CO[j] = new ContainerRefrigerated(numserie, capacidad, estado, temperatura);
                         CO[j].addMercancia(i, ME);}
             case 2 -> { String volumen = JOptionPane.showInputDialog("¿Cual es el volumen?");
-                        CO[j] = new ContenedorCisterna(numserie, capacidad, estado, volumen);
+                        CO[j] = new ContainerTank(numserie, capacidad, estado, volumen);
                         CO[j].addMercancia(i, ME);}
         }
     }
 
-    private static int CreateMercancia(Mercancia[] ME, String numserie) {
+    private static int CreateMercancia(Merchandise[] ME, String numserie) {
         int i = 0;
         int MER = JOptionPane.showConfirmDialog(
                 null,
@@ -96,7 +96,7 @@ public class TestContenedores {
             while (MER != 1) {
                 mercancia = JOptionPane.showInputDialog("Añade una mercancia: ");
                 cantidad = JOptionPane.showInputDialog("Cantidad: ");
-                ME[i] = new Mercancia(numserie, mercancia, cantidad);
+                ME[i] = new Merchandise(numserie, mercancia, cantidad);
                 i++;
                 MER = JOptionPane.showConfirmDialog(
                         null,
@@ -107,11 +107,11 @@ public class TestContenedores {
             }
         }
         else {JOptionPane.showMessageDialog(null, "No has añadido ninguna mercancia");}
-        ME[i] = new Mercancia(numserie, mercancia, cantidad);
+        ME[i] = new Merchandise(numserie, mercancia, cantidad);
         return i;
     }
 
-    private static void ModificarContenedor(Contenedor[] CO, int j){
+    private static void ModificarContenedor(Container[] CO, int j){
         int z = ElegirContenedor(CO, j);
         //impido que se reviente el programa si selecciona esta opcion sin haber creado un contenedor
         if (j == 0){JOptionPane.showMessageDialog(null, "El barco esta vacio");}
@@ -129,7 +129,7 @@ public class TestContenedores {
         }
     }
 
-    private static int ElegirContenedor(Contenedor[] CO, int j){
+    private static int ElegirContenedor(Container[] CO, int j){
         int mod = 1;
         int i = 99;
         if (j == 0){
@@ -167,7 +167,7 @@ public class TestContenedores {
         return i;
     }
 
-    private static void PrintContenedores(Contenedor[] CO, int j) {
+    private static void PrintContenedores(Container[] CO, int j) {
         StringBuilder cadena = new StringBuilder();
         if (j == 0){
             JOptionPane.showMessageDialog(

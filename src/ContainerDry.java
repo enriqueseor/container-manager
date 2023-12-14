@@ -1,7 +1,7 @@
-public class ContenedorSeco extends Contenedor {
+public class ContainerDry extends Container {
     private final String color;
 
-    public ContenedorSeco(String numero, String capacidad, String estado, String color) {
+    public ContainerDry(String numero, String capacidad, String estado, String color) {
         super(numero, capacidad, estado);
         this.color = color;
     }

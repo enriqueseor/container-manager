@@ -1,7 +1,7 @@
-public class Mercancia {
+public class Merchandise {
     public String numserie, descripcion, cantidad;
 
-    public Mercancia(String numserie, String descripcion,String cantidad) {
+    public Merchandise(String numserie, String descripcion, String cantidad) {
         this.numserie = numserie;
         this.descripcion = descripcion;
         this.cantidad = cantidad;
