@@ -5,46 +5,46 @@ public class ContainerManager {
     public static void main(String[] args) {
         Container[] CO = new Container[100];
         Merchandise[] ME = new Merchandise[100];
-        int j = 0;
+        int numberOfBoats = 0;
 
-        int x = AskQuestion();
-        while (x != 0) {
-            switch (x) {
-                case 1 -> { CreateContenedor(CO, j, ME); j++; }
-                case 2 -> ModificarContenedor(CO, j);
-                case 3 -> PrintContenedores(CO, j);
-                case 4 -> j = VaciarBarco();
+        int Option = AskQuestion();
+        while (Option != 0) {
+            switch (Option) {
+                case 1 -> { ContainerCreate(CO, numberOfBoats, ME); numberOfBoats++; }
+                case 2 -> ContainerModify(CO, numberOfBoats);
+                case 3 -> ContainerShow(CO, numberOfBoats);
+                case 4 -> numberOfBoats = EmptyBoat();
             }
-            x = AskQuestion();
+            Option = AskQuestion();
         }
     }
 
     private static int AskQuestion(){
-        String[] con={
-                "salir",
-                "Crear contenedor",
-                "Modificar contenedor",
-                "listar contenedores",
-                "descargar barco"
+        String[] strings = {
+                "EXIT",
+                "CREATE CONTAINER",
+                "MODIFY CONTAINER",
+                "SHOW CONTAINERS",
+                "EMPTY BOAT"
         };
         return JOptionPane.showOptionDialog(
                 null,
-                "Que quieres hacer",
-                "BARCO CAPITÁN ENRIC",
+                "SELECT AN OPTION",
+                "BOAT CONTAINER MANAGER",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
                 null,
-                con,
+                strings,
                 ""
         );
     }
 
-    private static void CreateContenedor(Container[] CO, int j, Merchandise[] ME){
-        String numserie = JOptionPane.showInputDialog("Numero de serie: ");
-        String capacidad = JOptionPane.showInputDialog("Capacidad: ");
-        int i = CreateMercancia(ME, numserie);
+    private static void ContainerCreate(Container[] CO, int j, Merchandise[] ME){
+        String numContainer = JOptionPane.showInputDialog("CONTAINER NUMBER: ");
+        String capacity = JOptionPane.showInputDialog("CAPACITY: ");
+        int i = CreateMercancia(ME, numContainer);
         String estado;
-        String[] s ={"abierto", "cerrado"};
+        String[] s ={"OPEN", "CLOSED"};
 
         int state = JOptionPane.showOptionDialog(
                 null,
@@ -72,13 +72,13 @@ public class ContainerManager {
         );
         switch (tipo) {
             case 0 -> { String color = JOptionPane.showInputDialog("¿Cual es el color");
-                        CO[j] = new ContainerDry(numserie, capacidad, estado, color);
+                        CO[j] = new ContainerDry(numContainer, capacity, estado, color);
                         CO[j].addMercancia(i, ME);}
             case 1 -> { String temperatura = JOptionPane.showInputDialog("¿Cual es la temperatura?");
-                        CO[j] = new ContainerRefrigerated(numserie, capacidad, estado, temperatura);
+                        CO[j] = new ContainerRefrigerated(numContainer, capacity, estado, temperatura);
                         CO[j].addMercancia(i, ME);}
             case 2 -> { String volumen = JOptionPane.showInputDialog("¿Cual es el volumen?");
-                        CO[j] = new ContainerTank(numserie, capacidad, estado, volumen);
+                        CO[j] = new ContainerTank(numContainer, capacity, estado, volumen);
                         CO[j].addMercancia(i, ME);}
         }
     }
@@ -111,7 +111,7 @@ public class ContainerManager {
         return i;
     }
 
-    private static void ModificarContenedor(Container[] CO, int j){
+    private static void ContainerModify(Container[] CO, int j){
         int z = ElegirContenedor(CO, j);
         //impido que se reviente el programa si selecciona esta opcion sin haber creado un contenedor
         if (j == 0){JOptionPane.showMessageDialog(null, "El barco esta vacio");}
@@ -167,7 +167,7 @@ public class ContainerManager {
         return i;
     }
 
-    private static void PrintContenedores(Container[] CO, int j) {
+    private static void ContainerShow(Container[] CO, int j) {
         StringBuilder cadena = new StringBuilder();
         if (j == 0){
             JOptionPane.showMessageDialog(
@@ -188,11 +188,11 @@ public class ContainerManager {
         }
     }
 
-    private static int VaciarBarco(){
+    private static int EmptyBoat(){
         int j = 0;
         JOptionPane.showMessageDialog(
                 null,
-                "Se ha vaciado el barco"
+                "THE BOAT WAS EMPTIED"
         );
         return j;
     }
