@@ -1,11 +1,11 @@
 public class Merchandise {
-    public String numserie, descripcion, cantidad;
+    public String numContainer, description, quantity;
 
-    public Merchandise(String numserie, String descripcion, String cantidad) {
-        this.numserie = numserie;
-        this.descripcion = descripcion;
-        this.cantidad = cantidad;
+    public Merchandise(String numContainer, String description, String quantity) {
+        this.numContainer = numContainer;
+        this.description = description;
+        this.quantity = quantity;
     }
 
-    public String toString() { return "Mercancia: " + descripcion + "\nCantidad: " + cantidad; }
+    public String toString() { return "Merchandise: " + description + "\nQuantity: " + quantity; }
 }
