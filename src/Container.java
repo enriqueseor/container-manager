@@ -1,25 +1,23 @@
 public abstract class Container {
-    private String numserie, capacidad, estado;
-    private final Merchandise[] ME = new Merchandise[100];
+    private String numContainer, capacity, state;
+    private final Merchandise[] merchandises = new Merchandise[100];
 
-    public Container(String numserie, String capacidad, String estado) {
-        this.numserie = numserie;
-        this.capacidad = capacidad;
-        this.estado = estado;
+    public Container(String numContainer, String capacity, String state) {
+        this.numContainer = numContainer;
+        this.capacity = capacity;
+        this.state = state;
     }
 
-    public void addMercancia(int i, Merchandise[] ME) {
-        for (int j = 0; j < i; j++) {
-            this.ME[j]=ME[j];
-        }
+    public void addMerchandise(int i, Merchandise[] merchandises) {
+        if (i >= 0) System.arraycopy(merchandises, 0, this.merchandises, 0, i);
     }
 
-    public void SetNumSerie(String numserie){ this.numserie = numserie; }
-    public void SetCapacidad(String capacidad){ this.capacidad = capacidad; }
-    public void SetEstado(String estado){ this.estado = estado; }
+    public void setNumContainer(String numContainer){ this.numContainer = numContainer; }
+    public void setCapacity(String capacity){ this.capacity = capacity; }
+    public void setState(String state){ this.state = state; }
 
     @Override
     public String toString() {
-        return "Numero: " + numserie + "\nCapacidad: " + capacidad + "\nEstado: " + estado;
+        return "Number: " + numContainer + "\nCapacity: " + capacity + "\nState: " + state;
     }
 }

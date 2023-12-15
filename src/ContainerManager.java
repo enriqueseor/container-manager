@@ -73,13 +73,13 @@ public class ContainerManager {
         switch (tipo) {
             case 0 -> { String color = JOptionPane.showInputDialog("¿Cual es el color");
                         CO[j] = new ContainerDry(numContainer, capacity, estado, color);
-                        CO[j].addMercancia(i, ME);}
+                        CO[j].addMerchandise(i, ME);}
             case 1 -> { String temperatura = JOptionPane.showInputDialog("¿Cual es la temperatura?");
                         CO[j] = new ContainerRefrigerated(numContainer, capacity, estado, temperatura);
-                        CO[j].addMercancia(i, ME);}
+                        CO[j].addMerchandise(i, ME);}
             case 2 -> { String volumen = JOptionPane.showInputDialog("¿Cual es el volumen?");
                         CO[j] = new ContainerTank(numContainer, capacity, estado, volumen);
-                        CO[j].addMercancia(i, ME);}
+                        CO[j].addMerchandise(i, ME);}
         }
     }
 
@@ -120,11 +120,11 @@ public class ContainerManager {
             int y = JOptionPane.showOptionDialog(null, "¿Que quieres modificar?", "Contenedor", 0, JOptionPane.QUESTION_MESSAGE, null, x, "");
             switch (y) {
                 case 0 -> { String numserie = JOptionPane.showInputDialog("Numero de Serie: ");
-                            CO[z].SetNumSerie(numserie); }
+                            CO[z].setNumContainer(numserie); }
                 case 1 -> { String capacidad = JOptionPane.showInputDialog("Capacidad: ");
-                            CO[z].SetCapacidad(capacidad); }
+                            CO[z].setCapacity(capacidad); }
                 case 2 -> { String estado = JOptionPane.showInputDialog("Estado: ");
-                            CO[z].SetEstado(estado); }
+                            CO[z].setState(estado); }
             }
         }
     }
