@@ -38,7 +38,7 @@ public class ContainerManager {
         );
     }
 
-    private static void createContainer(Container[] CO, int j){
+    private static void createContainer(Container[] CO, int numberOfContainers){
         String numContainer = JOptionPane.showInputDialog("CONTAINER NUMBER: ");
         String capacity = JOptionPane.showInputDialog("CAPACITY: ");
         String stateString;
@@ -70,22 +70,22 @@ public class ContainerManager {
         );
         switch (type) {
             case 0 -> { String color = JOptionPane.showInputDialog("WITCH IS THE COLOR");
-                        CO[j] = new ContainerDry(numContainer, capacity, stateString, color);}
+                        CO[numberOfContainers] = new ContainerDry(numContainer, capacity, stateString, color);}
             case 1 -> { String temperature = JOptionPane.showInputDialog("WITCH IS THE TEMPERATURE?");
-                        CO[j] = new ContainerRefrigerated(numContainer, capacity, stateString, temperature);}
+                        CO[numberOfContainers] = new ContainerRefrigerated(numContainer, capacity, stateString, temperature);}
             case 2 -> { String volume = JOptionPane.showInputDialog("WITCH IS THE VOLUME?");
-                        CO[j] = new ContainerTank(numContainer, capacity, stateString, volume);}
+                        CO[numberOfContainers] = new ContainerTank(numContainer, capacity, stateString, volume);}
         }
     }
 
-    private static void modifyContainer(Container[] CO, int j){
-        int z = chooseContainer(CO, j);
-        if (j == 0){
+    private static void modifyContainer(Container[] CO, int numberOfContainers){
+        if (numberOfContainers == 0){
             JOptionPane.showMessageDialog(
                     null,
                     "THE BOAT IS EMPTY");
         }
         else {
+            int z = chooseContainer(CO, numberOfContainers);
             String[] optionsArray = {"NUMBER OF CONTAINER", "CAPACITY", "STATE"};
             int question = JOptionPane.showOptionDialog(
                     null,
@@ -107,25 +107,24 @@ public class ContainerManager {
         }
     }
 
-    private static int chooseContainer(Container[] CO, int j){
+    private static int chooseContainer(Container[] CO, int numberOfContainers){
         int mod = 1;
         int i = 99;
-        if (j == 0){
+        if (numberOfContainers == 0){
             JOptionPane.showMessageDialog(
                 null,
                 "THE BOAT IS EMPTY"
             );
-        }
-        else {
+        } else {
             JOptionPane.showMessageDialog(
                     null,
                     "WITCH CONTAINER DO YOU WANT TO MODIFY?"
             );
             while (mod != 0) {
-                while (i >= j) {
+                while (i >= numberOfContainers) {
                     i = Integer.parseInt(
                             JOptionPane.showInputDialog(
-                                    "INPUT A NUMBER BETWEEN 0 AND " + j + " THE LAST ONE EXCLUDED"
+                                    "INPUT A NUMBER BETWEEN 0 AND " + numberOfContainers + " THE LAST ONE EXCLUDED"
                             )
                     );
                 }
@@ -139,22 +138,20 @@ public class ContainerManager {
                         "",
                         JOptionPane.YES_NO_OPTION
                 );
-                if (mod == 1) {i = 99;}
             }
         }
         return i;
     }
 
-    private static void ContainerShow(Container[] CO, int j) {
+    private static void ContainerShow(Container[] CO, int numberOfContainers) {
         StringBuilder string = new StringBuilder();
-        if (j == 0){
+        if (numberOfContainers == 0){
             JOptionPane.showMessageDialog(
                 null,
                 "THE BOAT IS EMPTY"
             );
-        }
-        else {
-            for (int i = 0; i < j; i++) {
+        } else {
+            for (int i = 0; i < numberOfContainers; i++) {
                 string.append(CO[i]);
                 string.append("\n");
                 string.append("\n");
@@ -167,11 +164,11 @@ public class ContainerManager {
     }
 
     private static int EmptyBoat(){
-        int j = 0;
+        int numberOfContainers = 0;
         JOptionPane.showMessageDialog(
                 null,
                 "THE BOAT WAS EMPTIED"
         );
-        return j;
+        return numberOfContainers;
     }
 }
