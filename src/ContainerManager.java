@@ -3,15 +3,15 @@ import javax.swing.JOptionPane;
 public class ContainerManager {
 
     public static void main(String[] args) {
-        Container[] CO = new Container[100];
+        Container[] containers = new Container[100];
         int numberOfContainers = 0;
 
         int Option = mainScreen();
         while (Option != 0) {
             switch (Option) {
-                case 1 -> { createContainer(CO, numberOfContainers); numberOfContainers++; }
-                case 2 -> modifyContainer(CO, numberOfContainers);
-                case 3 -> ContainerShow(CO, numberOfContainers);
+                case 1 -> { createContainer(containers, numberOfContainers); numberOfContainers++; }
+                case 2 -> modifyContainer(containers, numberOfContainers);
+                case 3 -> ContainerShow(containers, numberOfContainers);
                 case 4 -> numberOfContainers = EmptyBoat();
             }
             Option = mainScreen();
@@ -38,7 +38,7 @@ public class ContainerManager {
         );
     }
 
-    private static void createContainer(Container[] CO, int numberOfContainers){
+    private static void createContainer(Container[] containers, int numberOfContainers){
         String numContainer = JOptionPane.showInputDialog("CONTAINER NUMBER: ");
         String capacity = JOptionPane.showInputDialog("CAPACITY: ");
         String stateString;
@@ -70,22 +70,22 @@ public class ContainerManager {
         );
         switch (type) {
             case 0 -> { String color = JOptionPane.showInputDialog("WITCH IS THE COLOR");
-                        CO[numberOfContainers] = new ContainerDry(numContainer, capacity, stateString, color);}
+                        containers[numberOfContainers] = new ContainerDry(numContainer, capacity, stateString, color);}
             case 1 -> { String temperature = JOptionPane.showInputDialog("WITCH IS THE TEMPERATURE?");
-                        CO[numberOfContainers] = new ContainerRefrigerated(numContainer, capacity, stateString, temperature);}
+                        containers[numberOfContainers] = new ContainerRefrigerated(numContainer, capacity, stateString, temperature);}
             case 2 -> { String volume = JOptionPane.showInputDialog("WITCH IS THE VOLUME?");
-                        CO[numberOfContainers] = new ContainerTank(numContainer, capacity, stateString, volume);}
+                        containers[numberOfContainers] = new ContainerTank(numContainer, capacity, stateString, volume);}
         }
     }
 
-    private static void modifyContainer(Container[] CO, int numberOfContainers){
+    private static void modifyContainer(Container[] containers, int numberOfContainers){
         if (numberOfContainers == 0){
             JOptionPane.showMessageDialog(
                     null,
                     "THE BOAT IS EMPTY");
         }
         else {
-            int z = chooseContainer(CO, numberOfContainers);
+            int z = chooseContainer(containers, numberOfContainers);
             String[] optionsArray = {"NUMBER OF CONTAINER", "CAPACITY", "STATE"};
             int question = JOptionPane.showOptionDialog(
                     null,
@@ -98,49 +98,37 @@ public class ContainerManager {
                     "");
             switch (question) {
                 case 0 -> { String numContainer = JOptionPane.showInputDialog("NUMBER OF CONTAINER: ");
-                            CO[z].setNumContainer(numContainer); }
+                            containers[z].setNumContainer(numContainer); }
                 case 1 -> { String capacity = JOptionPane.showInputDialog("CAPACITY: ");
-                            CO[z].setCapacity(capacity); }
+                            containers[z].setCapacity(capacity); }
                 case 2 -> { String state = JOptionPane.showInputDialog("STATE: ");
-                            CO[z].setState(state); }
+                            containers[z].setState(state); }
             }
         }
     }
 
-    private static int chooseContainer(Container[] CO, int numberOfContainers){
-        int mod = 1;
-        int i = 99;
-        if (numberOfContainers == 0){
-            JOptionPane.showMessageDialog(
+    private static int chooseContainer(Container[] containers, int numberOfContainers){
+        int modifyChoice = 1;
+        int containerIndex = 99;
+        JOptionPane.showMessageDialog(
                 null,
-                "THE BOAT IS EMPTY"
-            );
-        } else {
-            JOptionPane.showMessageDialog(
+                "WITCH CONTAINER DO YOU WANT TO MODIFY?"
+        );
+        do {
+            do {
+                containerIndex = Integer.parseInt(JOptionPane.showInputDialog(
+                        "ENTER A NUMBER BETWEEN 0 AND " + (numberOfContainers - 1))
+                );
+            } while (containerIndex < 0 || containerIndex >= numberOfContainers);
+            JOptionPane.showMessageDialog(null, containers[containerIndex].toString());
+            modifyChoice = JOptionPane.showConfirmDialog(
                     null,
-                    "WITCH CONTAINER DO YOU WANT TO MODIFY?"
+                    "DO YOU WANT TO MODIFY THIS CONTAINER?",
+                    "",
+                    JOptionPane.YES_NO_OPTION
             );
-            while (mod != 0) {
-                while (i >= numberOfContainers) {
-                    i = Integer.parseInt(
-                            JOptionPane.showInputDialog(
-                                    "INPUT A NUMBER BETWEEN 0 AND " + numberOfContainers + " THE LAST ONE EXCLUDED"
-                            )
-                    );
-                }
-                JOptionPane.showMessageDialog(
-                        null,
-                        CO[i].toString()
-                );
-                mod = JOptionPane.showConfirmDialog(
-                        null,
-                        "DO YOU WANT TO MODIFY THIS CONTAINER?",
-                        "",
-                        JOptionPane.YES_NO_OPTION
-                );
-            }
-        }
-        return i;
+        } while (modifyChoice == JOptionPane.YES_OPTION);
+        return containerIndex;
     }
 
     private static void ContainerShow(Container[] CO, int numberOfContainers) {
