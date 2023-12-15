@@ -4,22 +4,21 @@ public class ContainerManager {
 
     public static void main(String[] args) {
         Container[] CO = new Container[100];
-        Merchandise[] ME = new Merchandise[100];
-        int numberOfBoats = 0;
+        int numberOfContainers = 0;
 
-        int Option = AskQuestion();
+        int Option = mainScreen();
         while (Option != 0) {
             switch (Option) {
-                case 1 -> { ContainerCreate(CO, numberOfBoats, ME); numberOfBoats++; }
-                case 2 -> ContainerModify(CO, numberOfBoats);
-                case 3 -> ContainerShow(CO, numberOfBoats);
-                case 4 -> numberOfBoats = EmptyBoat();
+                case 1 -> { createContainer(CO, numberOfContainers); numberOfContainers++; }
+                case 2 -> modifyContainer(CO, numberOfContainers);
+                case 3 -> ContainerShow(CO, numberOfContainers);
+                case 4 -> numberOfContainers = EmptyBoat();
             }
-            Option = AskQuestion();
+            Option = mainScreen();
         }
     }
 
-    private static int AskQuestion(){
+    private static int mainScreen(){
         String[] strings = {
                 "EXIT",
                 "CREATE CONTAINER",
@@ -39,12 +38,11 @@ public class ContainerManager {
         );
     }
 
-    private static void ContainerCreate(Container[] CO, int j, Merchandise[] ME){
+    private static void createContainer(Container[] CO, int j){
         String numContainer = JOptionPane.showInputDialog("CONTAINER NUMBER: ");
         String capacity = JOptionPane.showInputDialog("CAPACITY: ");
-        int i = CreateMerchandise(ME, numContainer);
         String stateString;
-        String[] s ={"OPEN", "CLOSED"};
+        String[] str ={"OPEN", "CLOSED"};
 
         int stateInt = JOptionPane.showOptionDialog(
                 null,
@@ -52,7 +50,7 @@ public class ContainerManager {
                 "",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE,
-                null, s,
+                null, str,
                 ""
         );
         if (stateInt == 0){
@@ -72,46 +70,15 @@ public class ContainerManager {
         );
         switch (type) {
             case 0 -> { String color = JOptionPane.showInputDialog("WITCH IS THE COLOR");
-                        CO[j] = new ContainerDry(numContainer, capacity, stateString, color);
-                        CO[j].addMerchandise(i, ME);}
+                        CO[j] = new ContainerDry(numContainer, capacity, stateString, color);}
             case 1 -> { String temperature = JOptionPane.showInputDialog("WITCH IS THE TEMPERATURE?");
-                        CO[j] = new ContainerRefrigerated(numContainer, capacity, stateString, temperature);
-                        CO[j].addMerchandise(i, ME);}
+                        CO[j] = new ContainerRefrigerated(numContainer, capacity, stateString, temperature);}
             case 2 -> { String volume = JOptionPane.showInputDialog("WITCH IS THE VOLUME?");
-                        CO[j] = new ContainerTank(numContainer, capacity, stateString, volume);
-                        CO[j].addMerchandise(i, ME);}
+                        CO[j] = new ContainerTank(numContainer, capacity, stateString, volume);}
         }
     }
 
-    private static int CreateMerchandise(Merchandise[] ME, String numContainer) {
-        int i = 0;
-        int MER = JOptionPane.showConfirmDialog(
-                null,
-                "DO YOU WANT TO ADD A MERCHANDISE?",
-                "MERCHANDISES",
-                JOptionPane.YES_NO_OPTION
-        );
-        String merchandise = "", quantity = "";
-        if ( MER == 0) {
-            while (MER != 1) {
-                merchandise = JOptionPane.showInputDialog("ADD A MERCHANDISE: ");
-                quantity = JOptionPane.showInputDialog("QUANTITY: ");
-                ME[i] = new Merchandise(numContainer, merchandise, quantity);
-                i++;
-                MER = JOptionPane.showConfirmDialog(
-                        null,
-                        "DO YOU WANT TO ADD ANOTHER MERCHANDISE?",
-                        "MERCHANDISES",
-                        JOptionPane.YES_NO_OPTION
-                );
-            }
-        }
-        else {JOptionPane.showMessageDialog(null, "YOU HAVE NOT ADDED ANY MERCHANDISE");}
-        ME[i] = new Merchandise(numContainer, merchandise, quantity);
-        return i;
-    }
-
-    private static void ContainerModify(Container[] CO, int j){
+    private static void modifyContainer(Container[] CO, int j){
         int z = chooseContainer(CO, j);
         if (j == 0){
             JOptionPane.showMessageDialog(
@@ -119,14 +86,15 @@ public class ContainerManager {
                     "THE BOAT IS EMPTY");
         }
         else {
-            String[] x = {"NUMBER OF BOAT", "CAPACITY", "STATE"};
+            String[] optionsArray = {"NUMBER OF CONTAINER", "CAPACITY", "STATE"};
             int question = JOptionPane.showOptionDialog(
                     null,
                     "WANT DO YOU WANT TO MODIFY?",
                     "CONTAINER",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE,
-                    null, x,
+                    null,
+                    optionsArray,
                     "");
             switch (question) {
                 case 0 -> { String numContainer = JOptionPane.showInputDialog("NUMBER OF CONTAINER: ");
@@ -157,7 +125,7 @@ public class ContainerManager {
                 while (i >= j) {
                     i = Integer.parseInt(
                             JOptionPane.showInputDialog(
-                                    "INPUT A NUMBER BETWEEN 0 AND " + j + "THE LAST ONE EXCLUDED"
+                                    "INPUT A NUMBER BETWEEN 0 AND " + j + " THE LAST ONE EXCLUDED"
                             )
                     );
                 }
@@ -167,7 +135,7 @@ public class ContainerManager {
                 );
                 mod = JOptionPane.showConfirmDialog(
                         null,
-                        "DO YOU WANT TO MODIFY THUS BOAT?",
+                        "DO YOU WANT TO MODIFY THIS CONTAINER?",
                         "",
                         JOptionPane.YES_NO_OPTION
                 );
