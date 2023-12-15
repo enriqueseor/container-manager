@@ -1,12 +1,12 @@
 public class ContainerRefrigerated extends Container {
-    private final String temperatura;
+    private final String temperature;
 
-    public ContainerRefrigerated(String numero, String capacidad, String estado, String temperatura) {
-        super(numero, capacidad, estado);
-        this.temperatura= temperatura;
+    public ContainerRefrigerated(String number, String capacity, String state, String temperature) {
+        super(number, capacity, state);
+        this.temperature = temperature;
     }
 
     public String toString() {
-        return super.toString() + "\nTemperatura: " + temperatura;
+        return super.toString() + "\nTemperature: " + temperature;
     }
 }

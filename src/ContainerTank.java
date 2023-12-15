@@ -1,12 +1,12 @@
 public class ContainerTank extends Container {
-    private final String volumen;
+    private final String volume;
 
-    public ContainerTank(String numero, String capacidad, String estado, String volumen) {
-        super(numero, capacidad, estado);
-        this.volumen = volumen;
+    public ContainerTank(String number, String capacity, String state, String volume) {
+        super(number, capacity, state);
+        this.volume = volume;
     }
 
     public String toString() {
-        return super.toString() + "\nVolumen: " + volumen;
+        return super.toString() + "\nVolume: " + volume;
     }
 }

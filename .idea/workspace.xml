@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a91844c9-2994-4e3d-89f7-7a6611618b84" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Container.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Container.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ContainerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ContainerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ContainerDry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ContainerDry.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +15,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -62,6 +64,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
+        <option value="jdk-21.0.1-openjdk-21.0.1-249ae16d76d6-29f91840" />
         <option value="jdk-21.0.1-openjdk-21.0.1-8336523bb0d9-cc9f59e6" />
       </set>
     </attachedChunks>
