@@ -1,6 +1,8 @@
 # Java Container Manager
 
-This [Java](https://www.java.com/en/) Container Manager is a simple tool to manage containers.
+This [Java](https://www.java.com/en/) Container Manager is a simple tool to manage containers. All the user 
+interface is done completely with JOptionPane, a Java library to show pop ups on 
+screen.
 
 ## Table of Contents
 
@@ -18,9 +20,13 @@ This [Java](https://www.java.com/en/) Container Manager is a simple tool to mana
 
 The app offers a wide range of features to help you efficiently manage containers of a boat, including:
 
+- **Container creation:** Store and organize essential employee details.
+
+- **Container Modification:** Modify the actual containers you've already created.
+
 - **Container listing:** Show the containers of the boat.
 
-- **Container creation:** Store and organize essential employee details.
+- **Container deletion:** Empty the boat of containers.
 
 ## Getting Started
 
