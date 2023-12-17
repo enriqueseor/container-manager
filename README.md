@@ -4,6 +4,8 @@ This [Java](https://www.java.com/en/) Container Manager is a simple tool to mana
 interface is done completely with JOptionPane, a Java library to show pop ups on 
 screen.
 
+![mainScreen](images/mainScreen.png)
+
 ## Table of Contents
 
 1. [Technologies Used](#technologies-used)
