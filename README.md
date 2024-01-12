@@ -4,7 +4,7 @@ This [Java](https://www.java.com/en/) Container Manager is a simple tool to mana
 interface is done completely with JOptionPane, a Java library to show pop ups on 
 screen.
 
-![mainScreen](images/mainScreen.png)
+![mainScreen](resources/mainScreen.png)
 
 ## Table of Contents
 
@@ -35,7 +35,7 @@ The app offers a wide range of features to help you efficiently manage container
 To run this project locally, follow these steps:
 
 1. Clone the repository
-2. Open the backend with an IDE like IntelliJ, netBeans, Eclipse, STS4, etc.
+2. Open the project in the IDE you like.
 3. Run the code.
 
 ## License
